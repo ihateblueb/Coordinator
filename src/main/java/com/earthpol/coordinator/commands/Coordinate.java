@@ -17,15 +17,18 @@ import org.jetbrains.annotations.NotNull;
 
 public class Coordinate implements CommandExecutor {
     @Override
-    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
-        if (!(sender instanceof Player)) {
+    public boolean onCommand(
+            @NotNull CommandSender sender,
+            @NotNull Command command,
+            @NotNull String label,
+            @NotNull String @NotNull [] args
+    ) {
+        if (!(sender instanceof Player player)) {
             sender.sendMessage("You need to be a player to execute this command.");
             return true;
         }
 
-        Player player = (Player) sender;
-
-        if (args.length < 1) {
+		if (args.length < 1) {
             sender.sendMessage(MiniMessage.miniMessage().deserialize(
                     Config.file.getString("message.error.incorrectusage", "")
             ));

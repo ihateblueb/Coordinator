@@ -11,14 +11,18 @@ import org.jetbrains.annotations.NotNull;
 
 public class GetLocation implements CommandExecutor {
     @Override
-    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
-        if (!(sender instanceof Player)) {
+    public boolean onCommand(
+            @NotNull CommandSender sender,
+            @NotNull Command command,
+            @NotNull String label,
+            @NotNull String @NotNull [] args
+    ) {
+        if (!(sender instanceof Player player)) {
             sender.sendMessage("You need to be a player to execute this command.");
             return true;
         }
 
-        Player player = (Player) sender;
-        Location loc = player.getLocation();
+		Location loc = player.getLocation();
 
         double scale = Config.file.getInt("scale");
         double tiles = Config.file.getInt("tiles");
