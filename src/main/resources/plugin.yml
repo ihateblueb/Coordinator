@@ -1,10 +1,10 @@
 name: Coordinator
-version: ${project.version}
+version: '${version}'
 main: com.earthpol.coordinator.Main
 api-version: 1.16
 folia-supported: true
 authors: [ 0xBit ]
-description: Converts IRL decimal degree coordinates to ingame coordinates and vice versa
+description: Converts real world decimal degree coordinates to ingame coordinates and vice versa
 website: https://earthpol.github.com
 commands:
   coordinate:

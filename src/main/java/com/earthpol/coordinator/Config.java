@@ -1,46 +1,35 @@
 package com.earthpol.coordinator;
 
 import org.bukkit.configuration.file.FileConfiguration;
+import org.jspecify.annotations.NonNull;
 
+import java.io.IOException;
 import java.util.List;
+import java.util.logging.Level;
 
 public class Config {
 
-	public final static FileConfiguration file = Main.instance.getConfig();
+	public static @NonNull FileConfiguration getConfig() {
+		return Main.instance.getConfig();
+	}
 
 	public static void initialize() {
-		file.options().setHeader(
-				List.of(
-						"Coordinator Configuration",
-						"https://earthmc.org/docs/plugins/coordinator/",
-						"",
-						"Configure tiles and scale based on the following table:",
-						"Ratio		Scale		Tiles",
-						"1:108		15360		15",
-						"1:217		7680		15",
-						"1:326		5120		15",
-						"1:543		3072		15"
-				)
-		);
-
-
-
-		file.addDefault(
+		getConfig().addDefault(
 				"tiles",
 				15
 		);
-		file.setComments(
+		getConfig().setComments(
 				"tiles",
 				List.of(
 						"Degrees per tile"
 				)
 		);
 
-		file.addDefault(
+		getConfig().addDefault(
 				"scale",
 				5120
 		);
-		file.setComments(
+		getConfig().setComments(
 				"scale",
 				List.of(
 						"Blocks per tile"
@@ -48,15 +37,14 @@ public class Config {
 		);
 
 
-
-		file.addDefault(
+		getConfig().addDefault(
 				"message.coordinate.default",
 
-				"<dark_gray><s>----</s>=<s>----</s> <yellow>In-game Coordinates</yellow> <dark_gray><s>----</s>=<s>----</s>\n"
+				"<dark_gray><st>--=--</st> <white>In-game Coordinates</white> <dark_gray><st>--=--</st>\n"
 				+"<gray>X: <yellow>{x} <gray>Z: <yellow>{z}\n"
 				+"<i><gray><click:copy_to_clipboard:'{x} 255 {z}'>Click to copy coordinates</click>"
 		);
-		file.setComments(
+		getConfig().setComments(
 				"message.coordinate.default",
 				List.of(
 						"Message to sent in response to /coordinate.",
@@ -67,12 +55,12 @@ public class Config {
 				)
 		);
 
-		file.addDefault(
+		getConfig().addDefault(
 				"message.coordinate.admin",
 
-				"\n<i><gray><click:suggest_command:'/tp {x} 255 {z}'>Click to teleport</click>"
+				"<dark_gray> •</dark_gray> <i><gray><click:suggest_command:'/tp {x} 255 {z}'>Click to teleport</click>"
 		);
-		file.setComments(
+		getConfig().setComments(
 				"message.coordinate.admin",
 				List.of(
 						"Additional lines to append to coordinate command response if the sender is an admin."
@@ -80,17 +68,16 @@ public class Config {
 		);
 
 
-
-		file.addDefault(
+		getConfig().addDefault(
 				"message.getlocation.default",
 
-				"<dark_gray><s>----</s>=<s>----</s> <yellow>Real World Coordinates</yellow> <dark_gray><s>----</s>=<s>----</s>\n"
+				"<dark_gray><st>--=--</st> <white>Real World Coordinates</white> <dark_gray><st>--=--</st>\n"
 						+"<gray>X: <yellow>{x} <gray>Y: <yellow>{y} <gray>Z: <yellow>{z}\n"
 						+"<gray>Lat: <yellow>{lat} <gray>Long: <yellow>{long}\n"
-						+"<i><gray><click:copy_to_clipboard:'{lat} {long}'>Click to copy coordinates</click>\n"
-						+"<i><gray><click:open_url:'https://www.google.com/maps/@{lat},{long},18z'>Click to open Google Maps/click>"
+						+"<i><gray><click:copy_to_clipboard:'{lat} {long}'>Click to copy coordinates</click>"
+						+"<dark_gray> •</dark_gray> <i><gray><click:open_url:'https://www.google.com/maps/@{lat},{long},18z'>Click to open Google Maps</click>"
 		);
-		file.setComments(
+		getConfig().setComments(
 				"message.getlocation.default",
 				List.of(
 						"Message to sent in response to /getlocation.",
@@ -105,19 +92,47 @@ public class Config {
 		);
 
 
+		getConfig().addDefault(
+				"message.reloaded",
+				"<yellow>Coordinator configuration reloaded"
+		);
 
-		file.addDefault(
+
+		getConfig().addDefault(
+				"message.error.mustbeplayer",
+				"<red>You must be a player to run this"
+		);
+		getConfig().addDefault(
+				"message.error.nopermission",
+				"<red>You don't have permission to do this"
+		);
+		getConfig().addDefault(
 				"message.error.latlongnumber",
 				"<red>Latitude and longitude should be a number"
 		);
-		file.addDefault(
+		getConfig().addDefault(
 				"message.error.incorrectusage",
 				"<red>Incorrect usage! /coordinate <latitude> <longitude>"
 		);
 
-		file.options().parseComments();
-		file.options().copyDefaults(true);
+
+		getConfig().options().setHeader(
+						List.of(
+								"Coordinator Configuration",
+								"https://earthmc.org/docs/plugins/coordinator/",
+								"",
+								"Configure tiles and scale based on the following table:",
+								"Ratio		Scale		Tiles",
+								"1:108		15360		15",
+								"1:217		7680		15",
+								"1:326		5120		15",
+								"1:543		3072		15"
+						)
+				).copyDefaults(true)
+				.parseComments(true);
+
 		Main.instance.saveConfig();
+		Main.instance.reloadConfig();
 	}
 
 }

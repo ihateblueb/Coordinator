@@ -24,20 +24,22 @@ public class Coordinate implements CommandExecutor {
             @NotNull String @NotNull [] args
     ) {
         if (!(sender instanceof Player player)) {
-            sender.sendMessage("You need to be a player to execute this command.");
+            sender.sendMessage(MiniMessage.miniMessage().deserialize(
+                    Config.getConfig().getString("message.error.mustbeplayer", "")
+            ));
             return true;
         }
 
 		if (args.length < 2) {
             sender.sendMessage(MiniMessage.miniMessage().deserialize(
-                    Config.file.getString("message.error.incorrectusage", "")
+                    Config.getConfig().getString("message.error.incorrectusage", "")
             ));
             return true;
         }
 
 
-        int scale = Config.file.getInt("scale");
-        int tiles = Config.file.getInt("tiles");
+        int scale = Config.getConfig().getInt("scale");
+        int tiles = Config.getConfig().getInt("tiles");
 
         int x, z;
         double lat, lng;
@@ -51,7 +53,7 @@ public class Coordinate implements CommandExecutor {
             lng = Double.parseDouble(lngInput);
         } catch (NumberFormatException e) {
             player.sendMessage(MiniMessage.miniMessage().deserialize(
-                    Config.file.getString("message.error.latlongnumber", "")
+                    Config.getConfig().getString("message.error.latlongnumber", "")
             ));
             return false;
         }
@@ -59,8 +61,8 @@ public class Coordinate implements CommandExecutor {
         x = (int) Math.round(lng * scale / tiles);
         z = (int) (-1 * Math.round(lat * scale / tiles));
 
-        String message = Config.file.getString("message.coordinate.default", "");
-        if (player.hasPermission("coordinator.admin")) message += Config.file.getString("message.coordinate.admin", "");
+        String message = Main.instance.getConfig().getString("message.coordinate.default", "");
+        if (player.hasPermission("coordinator.admin")) message += Config.getConfig().getString("message.coordinate.admin", "");
 
         message = message.replace("{x}", String.valueOf(x))
                 .replace("{z}", String.valueOf(z));

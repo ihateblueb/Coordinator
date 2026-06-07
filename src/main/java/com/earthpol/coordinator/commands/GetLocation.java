@@ -18,14 +18,16 @@ public class GetLocation implements CommandExecutor {
             @NotNull String @NotNull [] args
     ) {
         if (!(sender instanceof Player player)) {
-            sender.sendMessage("You need to be a player to execute this command.");
+            sender.sendMessage(MiniMessage.miniMessage().deserialize(
+                    Config.getConfig().getString("message.error.mustbeplayer", "")
+            ));
             return true;
         }
 
 		Location loc = player.getLocation();
 
-        double scale = Config.file.getInt("scale");
-        double tiles = Config.file.getInt("tiles");
+        double scale = Config.getConfig().getInt("scale");
+        double tiles = Config.getConfig().getInt("tiles");
 
         double x = loc.getBlockX();
         double z = loc.getBlockZ();
@@ -35,8 +37,8 @@ public class GetLocation implements CommandExecutor {
         double lng = (x / scale) * tiles;
 
 
-        String message = Config.file.getString("message.getlocation.default", "");
-        if (player.hasPermission("coordinator.admin")) message += Config.file.getString("message.getlocation.admin", "");
+        String message = Config.getConfig().getString("message.getlocation.default", "");
+        if (player.hasPermission("coordinator.admin")) message += Config.getConfig().getString("message.getlocation.admin", "");
 
         message = message.replace("{x}", String.valueOf(x))
                 .replace("{y}", String.valueOf(y))
