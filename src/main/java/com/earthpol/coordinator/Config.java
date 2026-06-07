@@ -1,7 +1,8 @@
 package com.earthpol.coordinator;
 
-import com.sun.tools.javac.util.List;
 import org.bukkit.configuration.file.FileConfiguration;
+
+import java.util.List;
 
 public class Config {
 
