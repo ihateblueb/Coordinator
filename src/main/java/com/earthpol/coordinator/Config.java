@@ -71,7 +71,7 @@ public class Config {
 		file.addDefault(
 				"message.coordinate.admin",
 
-				"\n<i><gray><click:copy_to_clipboard:'{x} 255 {z}'>Click to teleport</click>"
+				"\n<i><gray><click:suggest_command:'/tp {x} 255 {z}'>Click to teleport</click>"
 		);
 		file.setComments(
 				"message.coordinate.admin",
