@@ -17,13 +17,13 @@ public class Coordinator implements CommandExecutor {
                   Player player = (Player) sender;
                   if (player.hasPermission("coordinator.admin")){
                       Main.instance.reloadConfig();
-                      player.sendMessage(Main.prefix + "Configuration reloaded.");
+                      player.sendMessage("Configuration reloaded.");
                   } else {
-                      player.sendMessage(Main.prefix + "You do not have permission to do that.");
+                      player.sendMessage("You do not have permission to do that.");
                   }
               } else {
                   Main.instance.reloadConfig();
-                  Main.instance.log.info(Main.prefix + "Configuration reloaded.");
+                  Main.log.info("Configuration reloaded.");
               }
           } else if (args[0].equalsIgnoreCase("set")){
               // /COORDINATOR SET
@@ -40,9 +40,9 @@ public class Coordinator implements CommandExecutor {
                                   Main.instance.getConfig().set("scale", scale);
                                   Main.instance.saveConfig();
                                   Main.instance.reloadConfig();
-                                  player.sendMessage(Main.prefix + "Scale changed from §b" + prevScale + "§a to §b" + scale);
+                                  player.sendMessage("Scale changed from §b" + prevScale + "§a to §b" + scale);
                               } else {
-                                  player.sendMessage(Main.prefix + "You do not have permission to do that.");
+                                  player.sendMessage("You do not have permission to do that.");
                               }
                           } else {
                               int prevScale = Main.instance.getConfig().getInt("scale");
@@ -50,16 +50,16 @@ public class Coordinator implements CommandExecutor {
                               Main.instance.getConfig().set("scale", scale);
                               Main.instance.saveConfig();
                               Main.instance.reloadConfig();
-                              Main.log.info(Main.prefix + "Scale changed from " + prevScale + " to " + scale);
+                              Main.log.info("Scale changed from " + prevScale + " to " + scale);
                           }
                       } else {
                           if(sender instanceof Player){
                               Player player = (Player) sender;
-                              player.sendMessage(Main.prefix + "Correct Usage: §b/coordinator set scale <number>");
-                              player.sendMessage(Main.prefix + "Example Usage: §b/coordinator set scale 3072");
+                              player.sendMessage("Correct Usage: §b/coordinator set scale <number>");
+                              player.sendMessage("Example Usage: §b/coordinator set scale 3072");
                           } else {
-                              Main.log.info(Main.prefix + "Correct Usage: /coordinator set scale <number>");
-                              Main.log.info(Main.prefix + "Example Usage: /coordinator set scale 3072");
+                              Main.log.info("Correct Usage: /coordinator set scale <number>");
+                              Main.log.info("Example Usage: /coordinator set scale 3072");
                           }
                       }
                   } else if (args[1].equalsIgnoreCase("tiles")) {
@@ -75,9 +75,9 @@ public class Coordinator implements CommandExecutor {
                                   Main.instance.getConfig().set("tiles", tiles);
                                   Main.instance.saveConfig();
                                   Main.instance.reloadConfig();
-                                  player.sendMessage(Main.prefix + "Tiles changed from §b" + prevTile + "§a to §b" + tiles);
+                                  player.sendMessage("Tiles changed from §b" + prevTile + "§a to §b" + tiles);
                               } else {
-                                  player.sendMessage(Main.prefix + "You do not have permission to do that.");
+                                  player.sendMessage("You do not have permission to do that.");
                               }
                           } else {
                               int prevTile = Main.instance.getConfig().getInt("tiles");
@@ -85,16 +85,16 @@ public class Coordinator implements CommandExecutor {
                               Main.instance.getConfig().set("tiles", tiles);
                               Main.instance.saveConfig();
                               Main.instance.reloadConfig();
-                              Main.log.info(Main.prefix + "Tiles changed from " + prevTile + " to " + tiles);
+                              Main.log.info("Tiles changed from " + prevTile + " to " + tiles);
                           }
                       } else {
                           if(sender instanceof Player){
                               Player player = (Player) sender;
-                              player.sendMessage(Main.prefix + "Correct Usage: §b/coordinator set tiles <number>");
-                              player.sendMessage(Main.prefix + "Example Usage: §b/coordinator set tiles 15");
+                              player.sendMessage("Correct Usage: §b/coordinator set tiles <number>");
+                              player.sendMessage("Example Usage: §b/coordinator set tiles 15");
                           } else {
-                              Main.log.info(Main.prefix + "Correct Usage: /coordinator set tiles <number>");
-                              Main.log.info(Main.prefix + "Example Usage: /coordinator set tiles 15");
+                              Main.log.info("Correct Usage: /coordinator set tiles <number>");
+                              Main.log.info("Example Usage: /coordinator set tiles 15");
                           }
                       }
                   } else {
