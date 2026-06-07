@@ -6,7 +6,7 @@
 
     <groupId>com.earthpol</groupId>
     <artifactId>Coordinator</artifactId>
-    <version>3</version>
+    <version>3.0.0</version>
     <packaging>jar</packaging>
 
     <name>Coordinator</name>

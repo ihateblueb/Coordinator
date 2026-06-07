@@ -28,7 +28,7 @@ public class Coordinate implements CommandExecutor {
             return true;
         }
 
-		if (args.length < 1) {
+		if (args.length < 2) {
             sender.sendMessage(MiniMessage.miniMessage().deserialize(
                     Config.file.getString("message.error.incorrectusage", "")
             ));
@@ -60,7 +60,7 @@ public class Coordinate implements CommandExecutor {
         z = (int) (-1 * Math.round(lat * scale / tiles));
 
         String message = Config.file.getString("message.coordinate.default", "");
-        if (player.hasPermission("coordinator.admin")) message += Config.file.getString("message.coordinate.admin");
+        if (player.hasPermission("coordinator.admin")) message += Config.file.getString("message.coordinate.admin", "");
 
         message = message.replace("{x}", String.valueOf(x))
                 .replace("{z}", String.valueOf(z));

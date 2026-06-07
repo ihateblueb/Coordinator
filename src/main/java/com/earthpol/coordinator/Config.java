@@ -26,25 +26,24 @@ public class Config {
 
 
 		file.addDefault(
-				"scale",
-				""
-		);
-		file.setComments(
-				"scale",
-				List.of(
-						"Blocks per tile"
-				)
-		);
-
-
-		file.addDefault(
 				"tiles",
-				""
+				15
 		);
 		file.setComments(
 				"tiles",
 				List.of(
 						"Degrees per tile"
+				)
+		);
+
+		file.addDefault(
+				"scale",
+				5120
+		);
+		file.setComments(
+				"scale",
+				List.of(
+						"Blocks per tile"
 				)
 		);
 
@@ -104,6 +103,7 @@ public class Config {
 						"{z} - player z coordinate"
 				)
 		);
+
 
 
 		file.addDefault(

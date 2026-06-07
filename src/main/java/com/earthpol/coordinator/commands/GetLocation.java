@@ -36,7 +36,7 @@ public class GetLocation implements CommandExecutor {
 
 
         String message = Config.file.getString("message.getlocation.default", "");
-        if (player.hasPermission("coordinator.admin")) message += Config.file.getString("message.getlocation.admin");
+        if (player.hasPermission("coordinator.admin")) message += Config.file.getString("message.getlocation.admin", "");
 
         message = message.replace("{x}", String.valueOf(x))
                 .replace("{y}", String.valueOf(y))
